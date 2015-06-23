@@ -6,10 +6,9 @@ module.exports = postcss.plugin('postcss-font-weights', function (opts) {
 
 	return function (css) {
 		css.eachDecl('font-weight', function (decl) {
-			decl.replaceWith(decl.clone({
-				prop: decl.prop,
-				value: fontweights[decl.value] || decl.value
-			}));
+			if (fontweights[decl.value]) {
+				decl.value = fontweights[decl.value];
+			}
 		});
 	};
 });
