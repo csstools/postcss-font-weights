@@ -69,5 +69,5 @@ grunt.initConfig({
 [Font Weight Numeric Values]: http://www.w3.org/TR/css3-fonts/#font-weight-numeric-values
 [Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
 [PostCSS]: https://github.com/postcss/postcss
-[PostCSS Font Weights]: https://jonathantneal/postcss-font-weights
+[PostCSS Font Weights]: https://github.com/jonathantneal/postcss-font-weights
 [W3C CSS Fonts Specification]: http://www.w3.org/TR/css3-fonts/
