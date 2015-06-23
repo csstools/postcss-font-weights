@@ -1,9 +1,12 @@
 {
 	"name": "postcss-font-weights",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "PostCSS plugin to transform font weight names into numeric font weight values",
 	"keywords": ["postcss", "css", "postcss-plugin", "fonts", "weights", "names"],
 	"author": "Jonathan Neal <jonathantneal@hotmail.com>",
+	"contributors": [
+		"Bogdan Chadkin <trysound@yandex.ru>"
+	],
 	"license": "CC0-1.0",
 	"repository": {
 		"type": "git",
