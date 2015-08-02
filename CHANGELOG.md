@@ -1,3 +1,7 @@
+## 0.2.0 (2015-08-02)
+
+- Added: Font shorthand property
+
 ## 0.1.2 (2015-06-23)
 
 - Fixed: Optimization
