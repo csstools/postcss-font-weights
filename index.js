@@ -11,12 +11,12 @@ module.exports = postcss.plugin('postcss-font-weights', function (opts) {
 			}
 		});
 		css.eachDecl('font', function (decl) {
-            var key, re;
+			var key, re;
 			for (key in fontweights) {
-                if (key !== 'normal') { // normal is a keyword for several different font properties
-                    re = new RegExp('\\b' + key + '\\b', 'g');
-				    decl.value = decl.value.replace(re, fontweights[key]);
-                }
+				if (key !== 'normal') { // normal is a keyword for several different font properties
+					re = new RegExp('\\b' + key + '\\b', 'g');
+					decl.value = decl.value.replace(re, fontweights[key]);
+				}
 			}
 		});
 	};
