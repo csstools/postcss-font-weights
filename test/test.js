@@ -14,7 +14,7 @@ var test = function (input, output, opts, done) {
 };
 
 describe('postcss-font-weights', function () {
-	it('transforms font-weight thin', function (done) {
+	it('transforms font-weight: thin', function (done) {
 		test('a{font-weight: thin}', 'a{font-weight: 100}', {}, done);
 	});
 
@@ -112,5 +112,13 @@ describe('postcss-font-weights', function () {
 
 	it('preserves font-weight: 900', function (done) {
 		test('a{font-weight: 900}', 'a{font-weight: 900}', {}, done);
+	});
+
+	it('preserves font-weight: lighter', function (done) {
+		test('a{font-weight: lighter}', 'a{font-weight: lighter}', {}, done);
+	});
+
+	it('preserves font-weight: bolder', function (done) {
+		test('a{font-weight: bolder}', 'a{font-weight: bolder}', {}, done);
 	});
 });
