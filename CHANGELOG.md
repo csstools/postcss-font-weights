@@ -1,3 +1,7 @@
+## 1.0.1 (2015-08-03)
+
+- Updated: Documentation
+
 ## 1.0.0 (2015-08-03)
 
 - Added: Support for `font` declaration
