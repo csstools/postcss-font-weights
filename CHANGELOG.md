@@ -1,3 +1,9 @@
+## 2.0.0 (2015-09-01)
+
+- Updated: PostCSS 5
+- Updated: Developer dependencies
+- Updated: ESLint rules
+
 ## 1.0.1 (2015-08-03)
 
 - Updated: Documentation
