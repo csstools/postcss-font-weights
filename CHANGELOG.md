@@ -1,3 +1,7 @@
+## 2.0.1 (2015-12-08)
+
+- Updated: Dependencies, Documentation, and Tests
+
 ## 2.0.0 (2015-09-01)
 
 - Updated: PostCSS 5
