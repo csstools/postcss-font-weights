@@ -1,30 +1,32 @@
-# Font Weights
+# Font Weights <a href="https://github.com/postcss/postcss"><img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right"></a>
 
-<img align="right" width="135" height="95" src="http://postcss.github.io/postcss/logo-leftp.png" title="Philosopher’s stone, logo of PostCSS">
-
-[![NPM Version][npm-img]][npm] [![Build Status][ci-img]][ci]
+[![NPM Version][npm-img]][npm-url]
+[![Build Status][cli-img]][cli-url]
+[![Licensing][lic-image]][lic-url]
+[![Changelog][log-image]][log-url]
+[![Gitter Chat][git-image]][git-url]
 
 [Font Weights] lets you use common font weights in your CSS.
 
 ```css
 /* before */
 
-body {
-   font: light 100%/1.5;
+.example-1 {
+	font-weight: light;
 }
 
-.heading {
-   font-weight: medium;
+.example-2 {
+   font: light 100% monospace;
 }
 
 /* after */
 
-body {
-   font: 300 100%/1.5;
+.example-1 {
+	font-weight: 300;
 }
 
-.heading {
-   font-weight: 500;
+.example-2 {
+   font: 300 100% monospace;
 }
 ```
 
@@ -51,6 +53,22 @@ Common font weights are found in the [Font Weight Numeric Values] section of the
 
 These common font weights are converted to their numeric counterpart.
 
+## Options
+
+#### `prefix`
+
+Type: `String`  
+Default: `""`
+
+Adds an optional prefix to the `color` property (e.g. `"x"` for `-x-color`). Wrapping dashes (`-`) are automatically applied.
+
+#### `custom`
+
+Type: `Object`  
+Default: `undefined`
+
+Adds an additional set of keyword and numeric pairs (e.g. `custom: { lite: 300 }` for `font-weight: lite` to become `font-weight: 300`).
+
 ## Usage
 
 Add [Font Weights] to your build tool:
@@ -73,12 +91,12 @@ Add [PostCSS] to your build tool:
 npm install postcss --save-dev
 ```
 
-Load [Font Weights]: a PostCSS plugin:
+Load [Font Weights] as a PostCSS plugin:
 
 ```js
 postcss([
-    require('postcss-font-weights')()
-]);
+	require('postcss-font-weights')()
+]).process(YOUR_CSS, /* options */);
 ```
 
 #### Gulp
@@ -95,13 +113,13 @@ Enable [Font Weights] within your Gulpfile:
 var postcss = require('gulp-postcss');
 
 gulp.task('css', function () {
-    return gulp.src('./css/src/*.css').pipe(
-        postcss([
-            require('postcss-font-weights')()
-        ])
-    ).pipe(
-        gulp.dest('./css')
-    );
+	return gulp.src('./src/*.css').pipe(
+		postcss([
+			require('postcss-font-weights')()
+		])
+	).pipe(
+		gulp.dest('.')
+	);
 });
 ```
 
@@ -119,28 +137,31 @@ Enable [Font Weights] within your Gruntfile:
 grunt.loadNpmTasks('grunt-postcss');
 
 grunt.initConfig({
-    postcss: {
-        options: {
-            processors: [
-                require('postcss-font-weights')()
-            ]
-        },
-        dist: {
-            src: 'css/*.css'
-        }
-    }
+	postcss: {
+		options: {
+			use: [
+				require('postcss-font-weights')()
+			]
+		},
+		dist: {
+			src: '*.css'
+		}
+	}
 });
 ```
 
-[ci]:      https://travis-ci.org/jonathantneal/postcss-font-weights
-[ci-img]:  https://img.shields.io/travis/jonathantneal/postcss-font-weights.svg
-[npm]:     https://www.npmjs.com/package/postcss-font-weights
+[npm-url]: https://www.npmjs.com/package/postcss-font-weights
 [npm-img]: https://img.shields.io/npm/v/postcss-font-weights.svg
-
-[Font Weight Numeric Values]: http://www.w3.org/TR/css3-fonts/#font-weight-numeric-values
-[Gulp PostCSS]: https://github.com/postcss/gulp-postcss
-[Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
-[PostCSS]: https://github.com/postcss/postcss
-[W3C CSS Fonts Specification]: http://www.w3.org/TR/css3-fonts/
+[cli-url]: https://travis-ci.org/jonathantneal/postcss-font-weights
+[cli-img]: https://img.shields.io/travis/jonathantneal/postcss-font-weights.svg
+[lic-url]: LICENSE.md
+[lic-image]: https://img.shields.io/npm/l/postcss-font-weights.svg
+[log-url]: CHANGELOG.md
+[log-image]: https://img.shields.io/badge/changelog-md-blue.svg
+[git-url]: https://gitter.im/postcss/postcss
+[git-image]: https://img.shields.io/badge/chat-gitter-blue.svg
 
 [Font Weights]: https://github.com/jonathantneal/postcss-font-weights
+[PostCSS]: https://github.com/postcss/postcss
+[Gulp PostCSS]: https://github.com/postcss/gulp-postcss
+[Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss

@@ -1,7 +1,51 @@
 {
   "name": "postcss-font-weights",
-  "version": "2.0.1",
-  "description": "PostCSS plugin to transform font weight names into numeric font weight values",
+  "version": "3.0.0",
+  "description": "Use common font weights in your CSS",
+  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "license": "CC0-1.0",
+  "repository": "jonathantneal/postcss-font-weights",
+  "homepage": "https://github.com/jonathantneal/postcss-font-weights#readme",
+  "bugs": "https://github.com/jonathantneal/postcss-font-weights/issues",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "lint": "echint && eslint index.js && jscs index.js",
+    "prepublish": "npm test",
+    "tape": "postcss-tape",
+    "test": "npm run lint && postcss-tape"
+  },
+  "engines": {
+    "node": ">=6.9.1"
+  },
+  "dependencies": {
+    "css-font-weight-names": "^0.2.1",
+    "postcss": "^5.2.6",
+    "postcss-value-parser": "^3.3.0"
+  },
+  "devDependencies": {
+    "echint": "^2.1.0",
+    "echint-config-dev": "1.0.0",
+    "eslint": "^3.11.1",
+    "eslint-config-dev": "1.0.0",
+    "jscs": "^3.0.7",
+    "jscs-config-dev": "1.0.1",
+    "postcss-tape": "1.0.1"
+  },
+  "echint": {
+    "extends": "dev"
+  },
+  "eslintConfig": {
+    "extends": "dev",
+    "parserOptions": {
+      "sourceType": "module"
+    }
+  },
+  "jscsConfig": {
+    "preset": "dev"
+  },
   "keywords": [
     "postcss",
     "css",
@@ -15,33 +59,5 @@
     "numerics",
     "shorthands",
     "values"
-  ],
-  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
-  "contributors": [
-    "Bogdan Chadkin <trysound@yandex.ru>",
-    "David Walsh <dlwalsh@gmail.com>"
-  ],
-  "license": "CC0-1.0",
-  "repository": {
-    "type": "git",
-    "url":  "https://github.com/jonathantneal/postcss-font-weights.git"
-  },
-  "dependencies": {
-    "postcss": "^5.0.12",
-    "css-font-weight-names": "^0.2.1"
-  },
-  "devDependencies": {
-    "eslint": "^1.10.3",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.2.2"
-  },
-  "scripts": {
-    "lint": "eslint . --ignore-path .gitignore",
-    "tape": "tape test.js | tap-spec",
-    "test": "npm run lint && npm run tape"
-  },
-  "engines": {
-    "iojs": ">=2.0.0",
-    "node": ">=0.12.0"
-  }
+  ]
 }
