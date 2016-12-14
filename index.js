@@ -7,9 +7,9 @@ const parser  = require('postcss-value-parser');
 module.exports = postcss.plugin('postcss-font-weights', ({
 	prefix = '',
 	weights = {}
-}) => {
+} = {}) => {
 	// dashed prefix
-	const dashedPrefix = prefix ? '-' + prefix + '-' : '';
+	const dashedPrefix = prefix ? `-${ prefix }-` : '';
 
 	// property pattern
 	const propertyMatch = new RegExp(`^${ dashedPrefix }(font(-weight)?)$`);
@@ -46,3 +46,10 @@ module.exports = postcss.plugin('postcss-font-weights', ({
 		});
 	};
 });
+
+// override plugin#process
+module.exports.process = function (cssString, pluginOptions, processOptions) {
+	return postcss([
+		0 in arguments ? module.exports(pluginOptions) : module.exports()
+	]).process(cssString, processOptions);
+};

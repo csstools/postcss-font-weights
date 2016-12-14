@@ -1,5 +1,10 @@
 # Changes to Font Weights
 
+### 3.0.1 (December 8, 2016)
+
+- Updated: Use destructing assignment on plugin options
+- Updated: Use template literals
+
 ### 3.0.0 (December 5, 2016)
 
 - Added: Custom font weights through options
