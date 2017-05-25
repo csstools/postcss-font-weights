@@ -1,10 +1,9 @@
-# Font Weights <a href="https://github.com/postcss/postcss"><img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right"></a>
+# Font Weights [<img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right">][postcss]
 
 [![NPM Version][npm-img]][npm-url]
 [![Build Status][cli-img]][cli-url]
-[![Licensing][lic-image]][lic-url]
-[![Changelog][log-image]][log-url]
-[![Gitter Chat][git-image]][git-url]
+[![Windows Build Status][win-img]][win-url]
+[![Gitter Chat][git-img]][git-url]
 
 [Font Weights] lets you use common font weights in your CSS.
 
@@ -12,7 +11,7 @@
 /* before */
 
 .example-1 {
-	font-weight: light;
+  font-weight: light;
 }
 
 .example-2 {
@@ -22,7 +21,7 @@
 /* after */
 
 .example-1 {
-	font-weight: 300;
+  font-weight: 300;
 }
 
 .example-2 {
@@ -95,7 +94,7 @@ Load [Font Weights] as a PostCSS plugin:
 
 ```js
 postcss([
-	require('postcss-font-weights')()
+  require('postcss-font-weights')()
 ]).process(YOUR_CSS, /* options */);
 ```
 
@@ -113,13 +112,13 @@ Enable [Font Weights] within your Gulpfile:
 var postcss = require('gulp-postcss');
 
 gulp.task('css', function () {
-	return gulp.src('./src/*.css').pipe(
-		postcss([
-			require('postcss-font-weights')()
-		])
-	).pipe(
-		gulp.dest('.')
-	);
+  return gulp.src('./src/*.css').pipe(
+    postcss([
+      require('postcss-font-weights')()
+    ])
+  ).pipe(
+    gulp.dest('.')
+  );
 });
 ```
 
@@ -137,16 +136,16 @@ Enable [Font Weights] within your Gruntfile:
 grunt.loadNpmTasks('grunt-postcss');
 
 grunt.initConfig({
-	postcss: {
-		options: {
-			use: [
-				require('postcss-font-weights')()
-			]
-		},
-		dist: {
-			src: '*.css'
-		}
-	}
+  postcss: {
+    options: {
+      use: [
+        require('postcss-font-weights')()
+      ]
+    },
+    dist: {
+      src: '*.css'
+    }
+  }
 });
 ```
 
@@ -154,14 +153,15 @@ grunt.initConfig({
 [npm-img]: https://img.shields.io/npm/v/postcss-font-weights.svg
 [cli-url]: https://travis-ci.org/jonathantneal/postcss-font-weights
 [cli-img]: https://img.shields.io/travis/jonathantneal/postcss-font-weights.svg
-[lic-url]: LICENSE.md
-[lic-image]: https://img.shields.io/npm/l/postcss-font-weights.svg
-[log-url]: CHANGELOG.md
-[log-image]: https://img.shields.io/badge/changelog-md-blue.svg
+[win-url]: https://ci.appveyor.com/project/jonathantneal/postcss-font-weights
+[win-img]: https://img.shields.io/appveyor/ci/jonathantneal/postcss-font-weights.svg
 [git-url]: https://gitter.im/postcss/postcss
-[git-image]: https://img.shields.io/badge/chat-gitter-blue.svg
+[git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
 
 [Font Weights]: https://github.com/jonathantneal/postcss-font-weights
 [PostCSS]: https://github.com/postcss/postcss
 [Gulp PostCSS]: https://github.com/postcss/gulp-postcss
 [Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
+
+[Font Weight Numeric Values]: https://www.w3.org/TR/css-fonts-3/#font-weight-numeric-values
+[W3C CSS Fonts Specification]: https://www.w3.org/TR/css-fonts-3/

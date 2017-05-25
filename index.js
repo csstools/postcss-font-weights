@@ -4,10 +4,11 @@ const names   = require('css-font-weight-names');
 const parser  = require('postcss-value-parser');
 
 // plugin
-module.exports = postcss.plugin('postcss-font-weights', ({
-	prefix = '',
-	weights = {}
-} = {}) => {
+module.exports = postcss.plugin('postcss-font-weights', (opts) => {
+	// options
+	const prefix = opts && 'prefix' in opts ? opts.prefix : '';
+	const weights = opts && 'weights' in opts ? opts.weights : {};
+
 	// dashed prefix
 	const dashedPrefix = prefix ? `-${ prefix }-` : '';
 
@@ -46,10 +47,3 @@ module.exports = postcss.plugin('postcss-font-weights', ({
 		});
 	};
 });
-
-// override plugin#process
-module.exports.process = function (cssString, pluginOptions, processOptions) {
-	return postcss([
-		0 in arguments ? module.exports(pluginOptions) : module.exports()
-	]).process(cssString, processOptions);
-};
