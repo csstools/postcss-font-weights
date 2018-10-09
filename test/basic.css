@@ -109,3 +109,7 @@ b {
 b {
 	font-weight: heavy;
 }
+
+c {
+	font: normal normal normal 14px/1 FontAwesome;
+}

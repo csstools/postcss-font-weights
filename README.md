@@ -1,35 +1,33 @@
-# Font Weights [<img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS Logo" width="90" height="90" align="right">][postcss]
+# PostCSS Font Weights [<img src="https://postcss.github.io/postcss/logo.svg" alt="PostCSS" width="90" height="90" align="right">][postcss]
 
 [![NPM Version][npm-img]][npm-url]
 [![Build Status][cli-img]][cli-url]
-[![Windows Build Status][win-img]][win-url]
-[![Gitter Chat][git-img]][git-url]
+[![Support Chat][git-img]][git-url]
 
-[Font Weights] lets you use common font weights in your CSS.
+[PostCSS Font Weights] lets you do this in CSS.
 
-```css
-/* before */
-
-.example-1 {
+```pcss
+h1, h2, h3 {
   font-weight: light;
 }
 
-.example-2 {
+pre {
    font: light 100% monospace;
 }
 
-/* after */
+/* becomes */
 
-.example-1 {
+h1, h2, h3 {
   font-weight: 300;
 }
 
-.example-2 {
+pre {
    font: 300 100% monospace;
 }
 ```
 
-Common font weights are found in the [Font Weight Numeric Values] section of the [W3C CSS Fonts Specification].
+Common font weights are found in the Font Weight Numeric Values section of the
+[CSS Fonts Specification].
 
 | Common Weight | Numeric Value |
 | ------------- | ------------- |
@@ -52,116 +50,59 @@ Common font weights are found in the [Font Weight Numeric Values] section of the
 
 These common font weights are converted to their numeric counterpart.
 
-## Options
-
-#### `prefix`
-
-Type: `String`  
-Default: `""`
-
-Adds an optional prefix to the `color` property (e.g. `"x"` for `-x-color`). Wrapping dashes (`-`) are automatically applied.
-
-#### `custom`
-
-Type: `Object`  
-Default: `undefined`
-
-Adds an additional set of keyword and numeric pairs (e.g. `custom: { lite: 300 }` for `font-weight: lite` to become `font-weight: 300`).
-
 ## Usage
 
-Add [Font Weights] to your build tool:
+Add [PostCSS Font Weights] to your project:
 
 ```bash
 npm install postcss-font-weights --save-dev
 ```
 
-#### Node
+Use [PostCSS Font Weights] to process your CSS:
 
 ```js
-require('postcss-font-weights').process(YOUR_CSS);
+const postcssFontWeights = require('postcss-font-weights');
+
+postcssFontWeights.process(YOUR_CSS /*, processOptions, pluginOptions */);
 ```
 
-#### PostCSS
-
-Add [PostCSS] to your build tool:
-
-```bash
-npm install postcss --save-dev
-```
-
-Load [Font Weights] as a PostCSS plugin:
+Or use it as a [PostCSS] plugin:
 
 ```js
+const postcss = require('postcss');
+const postcssFontWeights = require('postcss-font-weights');
+
 postcss([
-  require('postcss-font-weights')()
-]).process(YOUR_CSS, /* options */);
+  postcssFontWeights(/* pluginOptions */)
+]).process(YOUR_CSS /*, processOptions */);
 ```
 
-#### Gulp
+[PostCSS Font Weights] runs in all Node environments, with special instructions for:
 
-Add [Gulp PostCSS] to your build tool:
+| [Node](INSTALL.md#node) | [PostCSS CLI](INSTALL.md#postcss-cli) | [Webpack](INSTALL.md#webpack) | [Create React App](INSTALL.md#create-react-app) | [Gulp](INSTALL.md#gulp) | [Grunt](INSTALL.md#grunt) |
+| --- | --- | --- | --- | --- | --- |
 
-```bash
-npm install gulp-postcss --save-dev
-```
+## Options
 
-Enable [Font Weights] within your Gulpfile:
+#### prefix
 
-```js
-var postcss = require('gulp-postcss');
+The `prefix` option determines the prefix applied to properties being processed
+(e.g. `x` for `-x-font-weight`). Wrapping dashes (`-`) are automatically
+applied.
 
-gulp.task('css', function () {
-  return gulp.src('./src/*.css').pipe(
-    postcss([
-      require('postcss-font-weights')()
-    ])
-  ).pipe(
-    gulp.dest('.')
-  );
-});
-```
+### custom
 
-#### Grunt
+The `custom` option determines additional font weight keywords and numeric
+pairs (e.g. `custom: { lite: 300 }` for `font-weight: lite` to become
+`font-weight: 300`).
 
-Add [Grunt PostCSS] to your build tool:
-
-```bash
-npm install grunt-postcss --save-dev
-```
-
-Enable [Font Weights] within your Gruntfile:
-
-```js
-grunt.loadNpmTasks('grunt-postcss');
-
-grunt.initConfig({
-  postcss: {
-    options: {
-      use: [
-        require('postcss-font-weights')()
-      ]
-    },
-    dist: {
-      src: '*.css'
-    }
-  }
-});
-```
-
-[npm-url]: https://www.npmjs.com/package/postcss-font-weights
-[npm-img]: https://img.shields.io/npm/v/postcss-font-weights.svg
-[cli-url]: https://travis-ci.org/jonathantneal/postcss-font-weights
 [cli-img]: https://img.shields.io/travis/jonathantneal/postcss-font-weights.svg
-[win-url]: https://ci.appveyor.com/project/jonathantneal/postcss-font-weights
-[win-img]: https://img.shields.io/appveyor/ci/jonathantneal/postcss-font-weights.svg
+[cli-url]: https://travis-ci.org/jonathantneal/postcss-font-weights
+[git-img]: https://img.shields.io/badge/support-chat-blue.svg
 [git-url]: https://gitter.im/postcss/postcss
-[git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
+[npm-img]: https://img.shields.io/npm/v/postcss-font-weights.svg
+[npm-url]: https://www.npmjs.com/package/postcss-font-weights
 
-[Font Weights]: https://github.com/jonathantneal/postcss-font-weights
+[CSS Fonts Specification]: https://www.w3.org/TR/css-fonts-3/#font-weight-numeric-values
 [PostCSS]: https://github.com/postcss/postcss
-[Gulp PostCSS]: https://github.com/postcss/gulp-postcss
-[Grunt PostCSS]: https://github.com/nDmitry/grunt-postcss
-
-[Font Weight Numeric Values]: https://www.w3.org/TR/css-fonts-3/#font-weight-numeric-values
-[W3C CSS Fonts Specification]: https://www.w3.org/TR/css-fonts-3/
+[PostCSS Font Weights]: https://github.com/jonathantneal/postcss-font-weights

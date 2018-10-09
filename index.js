@@ -1,49 +1,35 @@
-// tooling
-const postcss = require('postcss');
-const names   = require('css-font-weight-names');
-const parser  = require('postcss-value-parser');
+import postcss from 'postcss';
+import fontWeightNames from './lib/font-weight-names';
 
-// plugin
-module.exports = postcss.plugin('postcss-font-weights', (opts) => {
-	// options
-	const prefix = opts && 'prefix' in opts ? opts.prefix : '';
-	const weights = opts && 'weights' in opts ? opts.weights : {};
+export default postcss.plugin('postcss-font-weights', opts => {
+	// get the dashed prefix
+	const prefix = 'prefix' in Object(opts) ? `-${opts.prefix}-` : '';
 
-	// dashed prefix
-	const dashedPrefix = prefix ? `-${ prefix }-` : '';
+	// get the (conditionally prefixed) property pattern
+	const propertyRegExp = new RegExp(`^${prefix}(font(-weight)?)$`);
 
-	// property pattern
-	const propertyMatch = new RegExp(`^${ dashedPrefix }(font(-weight)?)$`);
+	// get the custom weights map
+	const fontWeightMap = Object.assign({}, fontWeightNames, Object(opts).weights);
 
-	// append custom weights to weights
-	Object.assign(names, weights);
+	// get the font-weight pattern
+	const fontWeightRegExp = new RegExp(`(^|\\s)(${Object.keys(fontWeightMap).join('|')})(\\s|$)`);
 
-	// font-weight pattern
-	const weightMatch = new RegExp(`\\b(${ Object.keys(names).join('|') })\\b`);
-
-	return (css) => {
+	return root => {
 		// walk each matching declaration
-		css.walkDecls(propertyMatch, (decl) => {
+		root.walkDecls(propertyRegExp, decl => {
 			// unprefixed property
-			const property = decl.prop.match(propertyMatch)[1];
+			const [, property] = decl.prop.match(propertyRegExp);
 
-			// if a prefix is in use
+			// conditionally remove the prefix from the property
 			if (prefix) {
-				// remove it from the property
 				decl.prop = property;
 			}
 
-			// if the value matches for a potential font-weight
-			if (weightMatch.test(decl.value)) {
-				// replace font-weights in the value
-				decl.value = parser(decl.value).walk((node) => {
-					// if the word is a font-weight
-					if (node.type === 'word' && node.value in names) {
-						// update the word with the font-weight value
-						node.value = names[node.value];
-					}
-				}).toString();
-			}
+			// conditionally replace the font weight in the value
+			decl.value = decl.value.replace(
+				fontWeightRegExp,
+				($0, beforeSpace, value, afterSpace) => `${beforeSpace}${fontWeightMap[value]}${afterSpace}` // eslint-disable-line max-params
+			);
 		});
 	};
 });

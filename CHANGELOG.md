@@ -1,4 +1,9 @@
-# Changes to Font Weights
+# Changes to PostCSS Font Weights
+
+### 5.0.0 (October 8, 2018)
+
+- Use Node 6 (major)
+- Use PostCSS 7.0.5 (major)
 
 ### 4.0.0 (May 25, 2017)
 
