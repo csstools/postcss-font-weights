@@ -1,39 +1,48 @@
 {
   "name": "postcss-font-weights",
-  "version": "4.0.0",
-  "description": "Use common font weights in your CSS",
+  "version": "1.0.0",
+  "description": "Use common font weights in CSS",
   "author": "Jonathan Neal <jonathantneal@hotmail.com>",
   "license": "CC0-1.0",
   "repository": "jonathantneal/postcss-font-weights",
   "homepage": "https://github.com/jonathantneal/postcss-font-weights#readme",
   "bugs": "https://github.com/jonathantneal/postcss-font-weights/issues",
-  "main": "index.js",
+  "main": "index.cjs.js",
+  "module": "index.es.mjs",
   "files": [
-    "index.js"
+    "index.cjs.js",
+    "index.cjs.js.map",
+    "index.es.mjs",
+    "index.es.mjs.map"
   ],
   "scripts": {
-    "clean": "git clean -X -d -f",
-    "prepublish": "npm test",
-    "test": "echo 'Running tests...'; npm run test:js && npm run test:tape",
-    "test:js": "eslint *.js --cache --ignore-pattern .gitignore",
+    "prepublishOnly": "npm test",
+    "pretest": "rollup -c .rollup.js --silent",
+    "test": "npm run test:js && npm run test:tape",
+    "test:js": "eslint *.js --cache --ignore-path .gitignore --quiet",
     "test:tape": "postcss-tape"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6.0.0"
   },
   "dependencies": {
-    "css-font-weight-names": "^0.2.1",
-    "postcss": "^6.0.1",
-    "postcss-value-parser": "^3.3.0"
+    "postcss": "^7.0.5"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-config-dev": "2.0.0",
-    "postcss-tape": "2.0.1",
-    "pre-commit": "^1.2.2"
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.6.1",
+    "eslint-config-dev": "^2.0.0",
+    "postcss-tape": "^2.2.0",
+    "pre-commit": "^1.2.2",
+    "rollup": "^0.66.4",
+    "rollup-plugin-babel": "^4.0.3"
   },
   "eslintConfig": {
-    "extends": "dev"
+    "extends": "dev",
+    "parser": "babel-eslint"
   },
   "keywords": [
     "postcss",
@@ -41,7 +50,6 @@
     "postcss-plugin",
     "fonts",
     "weights",
-    "fonts",
     "font-weight",
     "common",
     "names",
